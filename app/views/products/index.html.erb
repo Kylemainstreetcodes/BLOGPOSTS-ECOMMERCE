@@ -1,0 +1,12 @@
+<H1>My Products</H1>
+
+<% @products.each do |product| %>
+  <%= link_to("/products/#{product.id}") do %>
+    <div class= "Products">
+      <h2><%= product.name %></h2>
+      <p><%= product.description %></p>
+      <%= link_to("More Details" , "/products/#{product.id}")%>
+      <%= link_to("New Product" , "/products/new") %>
+    </div>
+  <% end %>
+<% end %>

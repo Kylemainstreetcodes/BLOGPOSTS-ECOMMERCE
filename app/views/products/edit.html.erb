@@ -1,0 +1,13 @@
+<h1>Edits</h1>
+<%= link_to("Home Page" , "/products/")%>
+<%= form_tag("/products/#{@product.id}", method: :put) do %>
+  <label for="Products">Enter Product: </label>
+  <input type="text" id="name" name="name" value="<%= @product.name %>">
+  <br>
+  <label for="description">Enter Description: </label>
+  <textarea id="description" name="description" cols="60" rows="10" style="resize: none"><%= @product.description %></textarea>
+  <br>
+  <label for=price> Enter Price: </label>
+  <input type="text" name="price" value= "<%@product.price%>">
+  <input type="submit" value="Submit a New Product!">
+<% end %>

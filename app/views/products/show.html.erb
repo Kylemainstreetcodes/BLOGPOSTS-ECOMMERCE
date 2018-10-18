@@ -1,0 +1,22 @@
+<h1>Product Details</h1>
+<h1>Products</h1>
+
+<a><%= link_to("Home Page" , "/products/")%></a>
+<%= @product.name %>
+Price: $ <%= @product.price %>
+<%= @product.description %>
+<%= link_to("Edit Products" , "/products/#{@product.id}/edit") %>
+
+
+
+<%= form_tag("/carted_products", method: :post) do %>
+<input type="number" name="amount" placeholder="How Many?">
+<br>
+<input type="Submit" value="Add to Cart">
+<br>  
+<input type="hidden" name="product_id" value="<%= @product.id%>">
+<%end%>
+
+
+
+<%= link_to("Destroy Products!" , "/products/#{@product.id}" , method: :delete, data: {confirm: "Are you sure?"}) %>

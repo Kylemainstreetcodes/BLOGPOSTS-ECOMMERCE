@@ -1,0 +1,12 @@
+<h1>Cart Page</h1>
+
+<% @carted_products.each do |carted_product| %>
+  <div>
+    <h4><%= carted_product.product.name %></h4>
+    <p><%= carted_product.amount %></p>
+    <%= link_to("Remove Item", "/carted_products/#{carted_product.id}", method: :put) %>
+
+  </div>
+<% end %>
+
+<%= link_to("Checkout", "/orders", method: :post)%>

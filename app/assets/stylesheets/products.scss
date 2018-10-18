@@ -1,0 +1,25 @@
+.Products {
+  text-decoration-color: black;
+  border: none;
+  border-radius: 8%;
+  text-align: left;
+}
+  ul {
+    list-style-type: none;
+    margin: 1px;
+    padding: 1px;
+}
+/*.active {
+    background-color: lightblue;
+    color: lightblue;
+}*/
+li{
+  display:inline-block;
+  margin: 15px;
+}
+/*a:hover{
+  background-color: lightblue;
+  transition-duration: 1500ms;
+  padding:1%;
+  color:black;
+}*/

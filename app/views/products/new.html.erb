@@ -1,0 +1,24 @@
+<h1>New Products</h1>
+<a><%= link_to("Home Page" , "/products/")%></a>
+<%= form_tag("/products", method: :post) do %>
+
+  <%= label_tag(:name, "Enter Product Name:")%>
+     <%=text_field_tag(:name)%>
+
+  <br>
+  
+  <%= label_tag(:description, "Enter Product Description:")%>
+    <%= text_area_tag(:description) %>
+
+  <br>
+  
+  <%= label_tag(:price, "Enter Product Price")%>
+  <%= number_field_tag(:price) %>
+
+  <br>
+
+  <%= label_tag(:image_url, "Input Image") %>
+  <%= text_field_tag(:image_url) %>
+
+  <%= submit_tag("Create New Product")%>
+<% end %>
