@@ -7,11 +7,21 @@ class OrdersController < ApplicationController
   def create
     products_in_cart = CartedProduct.where(is_removed: false, is_purchased: false)
 
-    order = Order.create
+    my_order = Order.new
 
-    products_in_cart.update_all(is_purchased: true, order_id: order.id)
+    if products_in_cart.any? 
 
-    redirect_to "/products"
+      my_order = Order.create
+
+      products_in_cart.update_all(is_purchased: true, order_id: my_order.id)
+
+      flash[:success] = "We've received your order"
+
+      redirect_to "/products"
+    else
+      flash[:alert] = "You need to add products to your cart"
+      redirect_to "/products"
+    end
   end
 
   def show

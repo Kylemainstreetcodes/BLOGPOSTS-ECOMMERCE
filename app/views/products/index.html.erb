@@ -1,4 +1,16 @@
-<H1>My Products</H1>
+<H1> View All Products</H1>
+
+<div class="Search-Bar">
+<%= form_tag("/products", method: :get) do %>
+  <input type="text" name="category" value="<%= params[:category]%>">
+  <input type="submit" value= "search by category">
+</div>
+<% if @category_name %>
+  <p>Displaying <%= @products.length %> result(s)</p>
+    <% elsif @error_message %>
+    <p><%= @error_message %></p>
+    <% end %>
+<%end%>
 
 <% @products.each do |product| %>
   <%= link_to("/products/#{product.id}") do %>

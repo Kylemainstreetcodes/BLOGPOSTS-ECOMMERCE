@@ -1,13 +1,53 @@
 <h1>Edits</h1>
-<%= link_to("Home Page" , "/products/")%>
+
+<% if @product.errors.any? %>
+  <div id= "error_explanation">
+    <h2><%= pluralize(@product.errors.count, "error") %> prevented this Product from being saved:</h2>
+  <ul>
+      <% @product.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+      <%end%>
+        
+  </ul>
+</div>
+<%end%>
+
 <%= form_tag("/products/#{@product.id}", method: :put) do %>
-  <label for="Products">Enter Product: </label>
-  <input type="text" id="name" name="name" value="<%= @product.name %>">
+  <%= label_tag(:name, "Enter Product Name:")%>
+     <%=text_field_tag(:name, @product.name)%>
+
   <br>
-  <label for="description">Enter Description: </label>
-  <textarea id="description" name="description" cols="60" rows="10" style="resize: none"><%= @product.description %></textarea>
+  <%= label_tag(:category_ids, "Select a category for your product:")%>
+  <br>  
+  <%= select_tag(:category_ids, options_from_collection_for_select(@categories, :id, :name, @product.category_ids), multiple:true, id: "select-tag"%>
+
+  <%= label_tag(:description, "Enter Product Description:")%>
+    <%= text_area_tag(:description, nil, placholder: "Enter description here") %>
+
+  <br>
+  
+  <%= label_tag(:price, "Enter Product Price")%>
+  <%= number_field_tag(:price) %>
+
+  <br>
   <br>
   <label for=price> Enter Price: </label>
   <input type="text" name="price" value= "<%@product.price%>">
   <input type="submit" value="Submit a New Product!">
 <% end %>
+
+<script type="text/javascript">
+  var tagSelectOptions = document.querySelectorAll('#select-tag option')
+
+  for(var i = 0; i < tagSelectOptions.length; i++) {
+    tagSelectOptions[i].addEventListener("mousedown", function(e) {
+      e.preventDefault();
+      var option = e.target;
+      if (option.selected) {
+        option.selected = false;
+      } else {
+        option.selected = true;
+      }
+    })
+  }
+</script>
